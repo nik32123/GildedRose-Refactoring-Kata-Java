@@ -33,7 +33,7 @@ class GildedRoseTest {
             () -> assertItem(items[5], "Backstage passes to a TAFKAL80ETC concert", 14, 21),
             () -> assertItem(items[6], "Backstage passes to a TAFKAL80ETC concert", 9, 50),
             () -> assertItem(items[7], "Backstage passes to a TAFKAL80ETC concert", 4, 50),
-            () -> assertItem(items[8], "Conjured Mana Cake", 2, 5)
+            () -> assertItem(items[8], "Conjured Mana Cake", 2, 4)
         );
     }
 
@@ -53,7 +53,7 @@ class GildedRoseTest {
             () -> assertItem(items[5], "Backstage passes to a TAFKAL80ETC concert", 13, 22),
             () -> assertItem(items[6], "Backstage passes to a TAFKAL80ETC concert", 8, 50),
             () -> assertItem(items[7], "Backstage passes to a TAFKAL80ETC concert", 3, 50),
-            () -> assertItem(items[8], "Conjured Mana Cake", 1, 4)
+            () -> assertItem(items[8], "Conjured Mana Cake", 1, 2)
         );
     }
 

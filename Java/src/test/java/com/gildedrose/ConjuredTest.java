@@ -3,12 +3,10 @@ package com.gildedrose;
 import com.gildedrose.processor.resolver.ItemProcessorResolver;
 import com.gildedrose.processor.resolver.ItemProcessorResolverFactory;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Disabled("Conjured items are not yet supported")
 class ConjuredTest {
 
     private static final String NAME = "Conjured Mana Cake";
@@ -37,7 +35,7 @@ class ConjuredTest {
 
         app.updateQuality();
 
-        assertItem(items[0], NAME, -1, 2);
+        assertItem(items[0], NAME, -1, 4);
     }
 
     @Test
