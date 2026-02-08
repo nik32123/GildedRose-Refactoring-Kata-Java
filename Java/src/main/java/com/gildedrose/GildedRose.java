@@ -1,14 +1,29 @@
 package com.gildedrose;
 
-class GildedRose {
-    Item[] items;
+import com.gildedrose.processor.ItemProcessor;
+import com.gildedrose.processor.resolver.ItemProcessorResolver;
 
-    public GildedRose(Item[] items) {
+import java.util.Optional;
+
+class GildedRose {
+
+    protected Item[] items;
+    protected final ItemProcessorResolver itemProcessorResolver;
+
+    public GildedRose(Item[] items, ItemProcessorResolver itemProcessorResolver) {
         this.items = items;
+        this.itemProcessorResolver = itemProcessorResolver;
     }
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
+
+            Optional<ItemProcessor> itemProcessorOptional = itemProcessorResolver.resolve(items[i]);
+            if (itemProcessorOptional.isPresent()) {
+                itemProcessorOptional.get().process(items[i]);
+                continue;
+            }
+
             if (!items[i].name.equals("Aged Brie")
                     && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (items[i].quality > 0) {

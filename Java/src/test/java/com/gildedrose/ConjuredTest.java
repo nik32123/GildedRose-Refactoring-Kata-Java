@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+import com.gildedrose.processor.resolver.ItemProcessorResolver;
+import com.gildedrose.processor.resolver.ItemProcessorResolverFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +13,17 @@ class ConjuredTest {
 
     private static final String NAME = "Conjured Mana Cake";
 
+    private static ItemProcessorResolver itemProcessorResolver;
+
+    @BeforeAll
+    static void setup() {
+        itemProcessorResolver = ItemProcessorResolverFactory.create();
+    }
+
     @Test
     void degradesBy2_beforeSellDate() {
         Item[] items = {new Item(NAME, 3, 6)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         app.updateQuality();
 
@@ -23,7 +33,7 @@ class ConjuredTest {
     @Test
     void degradesBy2_afterSellDate() {
         Item[] items = {new Item(NAME, 0, 6)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         app.updateQuality();
 
@@ -33,7 +43,7 @@ class ConjuredTest {
     @Test
     void qualityNeverNegative() {
         Item[] items = {new Item(NAME, 3, 1)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         app.updateQuality();
 

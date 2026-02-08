@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+import com.gildedrose.processor.resolver.ItemProcessorResolver;
+import com.gildedrose.processor.resolver.ItemProcessorResolverFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -7,10 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
 
+    private static ItemProcessorResolver itemProcessorResolver;
+
+    @BeforeAll
+    static void setup() {
+        itemProcessorResolver = ItemProcessorResolverFactory.create();
+    }
+
     @Test
     void afterOneDay() {
         Item[] items = textFixtureItems();
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         updateDays(app, 1);
 
@@ -30,7 +40,7 @@ class GildedRoseTest {
     @Test
     void afterTwoDays() {
         Item[] items = textFixtureItems();
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         updateDays(app, 2);
 

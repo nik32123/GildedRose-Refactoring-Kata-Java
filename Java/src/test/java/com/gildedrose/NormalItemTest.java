@@ -1,15 +1,25 @@
 package com.gildedrose;
 
+import com.gildedrose.processor.resolver.ItemProcessorResolver;
+import com.gildedrose.processor.resolver.ItemProcessorResolverFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NormalItemTest {
 
+    private static ItemProcessorResolver itemProcessorResolver;
+
+    @BeforeAll
+    static void setup() {
+        itemProcessorResolver = ItemProcessorResolverFactory.create();
+    }
+
     @Test
     void degradesBy1_beforeSellDate() {
         Item[] items = {new Item("foo", 5, 10)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         app.updateQuality();
 
@@ -19,7 +29,7 @@ class NormalItemTest {
     @Test
     void degradesBy2_afterSellDate() {
         Item[] items = {new Item("foo", 0, 10)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         app.updateQuality();
 
@@ -29,7 +39,7 @@ class NormalItemTest {
     @Test
     void qualityNeverNegative() {
         Item[] items = {new Item("foo", 0, 0)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         app.updateQuality();
 

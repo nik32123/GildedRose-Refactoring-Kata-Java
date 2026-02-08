@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+import com.gildedrose.processor.resolver.ItemProcessorResolver;
+import com.gildedrose.processor.resolver.ItemProcessorResolverFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,10 +11,17 @@ class SulfurasTest {
 
     private static final String NAME = "Sulfuras, Hand of Ragnaros";
 
+    private static ItemProcessorResolver itemProcessorResolver;
+
+    @BeforeAll
+    static void setup() {
+        itemProcessorResolver = ItemProcessorResolverFactory.create();
+    }
+
     @Test
     void neverChanges_sellInAndQualityStaySame() {
         Item[] items = {new Item(NAME, 0, 80)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         updateDays(app, 5);
 
@@ -21,7 +31,7 @@ class SulfurasTest {
     @Test
     void neverChanges_evenWithNegativeSellIn() {
         Item[] items = {new Item(NAME, -1, 80)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         updateDays(app, 5);
 

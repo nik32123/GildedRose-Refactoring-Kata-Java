@@ -1,15 +1,25 @@
 package com.gildedrose;
 
+import com.gildedrose.processor.resolver.ItemProcessorResolver;
+import com.gildedrose.processor.resolver.ItemProcessorResolverFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AgedBrieTest {
 
+    private static ItemProcessorResolver itemProcessorResolver;
+
+    @BeforeAll
+    static void setup() {
+        itemProcessorResolver = ItemProcessorResolverFactory.create();
+    }
+
     @Test
     void increasesBy1_beforeSellDate() {
         Item[] items = {new Item("Aged Brie", 2, 0)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         app.updateQuality();
 
@@ -19,7 +29,7 @@ class AgedBrieTest {
     @Test
     void increasesBy2_afterSellDate() {
         Item[] items = {new Item("Aged Brie", 0, 10)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         app.updateQuality();
 
@@ -29,7 +39,7 @@ class AgedBrieTest {
     @Test
     void qualityNeverMoreThan50() {
         Item[] items = {new Item("Aged Brie", 5, 50)};
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(items, itemProcessorResolver);
 
         app.updateQuality();
 
