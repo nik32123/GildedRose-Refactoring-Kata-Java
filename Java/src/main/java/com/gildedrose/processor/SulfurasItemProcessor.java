@@ -5,10 +5,22 @@ import com.gildedrose.Item;
 /**
  * Processor for "Sulfuras, Hand of Ragnaros" items.
  */
-public class SulfurasItemProcessor implements ItemProcessor {
+public class SulfurasItemProcessor extends AbstractItemProcessor {
+
+    private final static int QUALITY_MAX = 80;
 
     @Override
-    public void process(Item item) {
+    protected void updateQuantity(Item item) {
         // Sulfuras, being a legendary item, never has to be sold or decreases in Quality
+    }
+
+    @Override
+    protected void updateSellsIn(Item item) {
+        // Sulfuras, being a legendary item, never has to be sold or decreases in Quality
+    }
+
+    @Override
+    protected int getQualityMax() {
+        return QUALITY_MAX;
     }
 }

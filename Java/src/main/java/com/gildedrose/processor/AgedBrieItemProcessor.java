@@ -5,23 +5,11 @@ import com.gildedrose.Item;
 /**
  * Processor for "Aged Brie" items.
  */
-public class AgedBrieItemProcessor implements ItemProcessor {
-
-    private final static int MAX_QUALITY = 50;
+public class AgedBrieItemProcessor extends AbstractItemProcessor {
 
     @Override
-    public void process(Item item) {
-        item.sellIn = item.sellIn - 1;
-
-        increaseQualityIfPossible(item);
-        if (item.sellIn < 0) {
-            increaseQualityIfPossible(item);
-        }
-    }
-
-    private void increaseQualityIfPossible(Item item) {
-        if (item.quality < MAX_QUALITY) {
-            item.quality = item.quality + 1;
-        }
+    public void updateQuantity(Item item) {
+        int qualityIncrement = item.sellIn < 0 ? 2 : 1;
+        item.quality += qualityIncrement;
     }
 }

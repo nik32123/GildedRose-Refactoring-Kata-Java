@@ -10,6 +10,7 @@ final class ItemMatchers {
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     private static final String AGED_BRIE = "Aged Brie";
     private static final String CONJURED = "Conjured Mana Cake";
+    private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
 
     private ItemMatchers() {
     }
@@ -24,5 +25,9 @@ final class ItemMatchers {
 
     static boolean isConjured(Item item) {
         return CONJURED.equals(item.name);
+    }
+
+    static boolean isBackstage(Item item) {
+        return BACKSTAGE.equals(item.name);
     }
 }
