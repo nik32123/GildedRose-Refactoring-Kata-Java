@@ -30,4 +30,8 @@ final class ItemMatchers {
     static boolean isBackstage(Item item) {
         return BACKSTAGE.equals(item.name);
     }
+
+    static boolean matchAll(Item item) {
+        return true;
+    }
 }

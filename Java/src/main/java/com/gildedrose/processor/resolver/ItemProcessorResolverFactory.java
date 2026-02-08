@@ -4,6 +4,7 @@ import com.gildedrose.Item;
 import com.gildedrose.processor.AgedBrieItemProcessor;
 import com.gildedrose.processor.BackstagePassesItemProcessor;
 import com.gildedrose.processor.ConjuredItemProcessor;
+import com.gildedrose.processor.DefaultItemProcessor;
 import com.gildedrose.processor.ItemProcessor;
 import com.gildedrose.processor.SulfurasItemProcessor;
 
@@ -29,12 +30,14 @@ public class ItemProcessorResolverFactory {
         ItemProcessor agedBrie = new AgedBrieItemProcessor();
         ItemProcessor conjuredProcessor = new ConjuredItemProcessor();
         ItemProcessor backstagePassesProcessor = new BackstagePassesItemProcessor();
+        ItemProcessor defaultProcessor = new DefaultItemProcessor();
 
         LinkedHashMap<Predicate<Item>, ItemProcessor> rules = new LinkedHashMap<>();
         rules.put(ItemMatchers::isSulfuras, sulfuras);
         rules.put(ItemMatchers::isAgedBrie, agedBrie);
         rules.put(ItemMatchers::isConjured, conjuredProcessor);
         rules.put(ItemMatchers::isBackstage, backstagePassesProcessor);
+        rules.put(ItemMatchers::matchAll, defaultProcessor);
 
         return new ItemProcessorResolver(rules);
     }
