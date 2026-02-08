@@ -8,11 +8,16 @@ import com.gildedrose.Item;
 final class ItemMatchers {
 
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String AGED_BRIE = "Aged Brie";
 
     private ItemMatchers() {
     }
 
     static boolean isSulfuras(Item item) {
         return SULFURAS.equals(item.name);
+    }
+
+    static boolean isAgedBrie(Item item) {
+        return AGED_BRIE.equals(item.name);
     }
 }
