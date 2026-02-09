@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import com.gildedrose.processor.ItemProcessor;
 import com.gildedrose.processor.resolver.ItemProcessorResolver;
 
 class GildedRose {
@@ -14,8 +15,8 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            itemProcessorResolver.resolve(item)
-                .ifPresent(itemProcessor -> itemProcessor.process(item));
+            ItemProcessor itemProcessor = itemProcessorResolver.resolve(item);
+            itemProcessor.process(item);
         }
     }
 }
