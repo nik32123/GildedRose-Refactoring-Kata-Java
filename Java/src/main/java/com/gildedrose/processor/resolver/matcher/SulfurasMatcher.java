@@ -7,10 +7,8 @@ import com.gildedrose.Item;
  */
 public class SulfurasMatcher implements ItemMatcher {
 
-    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-
     @Override
     public boolean match(Item item) {
-        return SULFURAS.equals(item.name);
+        return ItemNames.SULFURAS.equals(item.name);
     }
 }

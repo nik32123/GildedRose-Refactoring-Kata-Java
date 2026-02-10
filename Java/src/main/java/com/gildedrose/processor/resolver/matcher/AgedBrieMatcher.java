@@ -7,10 +7,8 @@ import com.gildedrose.Item;
  */
 public class AgedBrieMatcher implements ItemMatcher {
 
-    private static final String AGED_BRIE = "Aged Brie";
-
     @Override
     public boolean match(Item item) {
-        return AGED_BRIE.equals(item.name);
+        return ItemNames.AGED_BRIE.equals(item.name);
     }
 }
